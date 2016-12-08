@@ -34,26 +34,8 @@
 
 <h1>see complete inventory to help customers</h1>
 
-@*<h3>item:</h3>
-<ul>
-    <li>cost</li>
-    <li>description</li>
-    <li>name</li>
-    <li>quantity</li>
-</ul>*@
-
-<ul>
-    @foreach (var Item in Model)
-    {
-        <li>@Html.DisplayFor(modelItem => Item.Name)</li>
-        <li>@Html.DisplayFor(modelItem => Item.Cost)</li>
-        <li>@Html.DisplayFor(modelItem => Item.Description)</li>
-        <li>@Html.DisplayFor(modelItem => Item.Quantity)</li><hr />
-    }
-</ul>
-
-
-
+@if (User.Identity.IsAuthenticated)
+{
 <hide>
     <button class="AddButton">Add</button>
     <div id="result6"></div>
@@ -76,3 +58,19 @@
         </form>
     </div>
 </show>
+}
+else
+{
+    <p>you can login to add to this table</p>
+}
+<hr />
+<ul>
+    @foreach (var Item in Model)
+    {
+        <li>@Html.DisplayFor(modelItem => Item.Name)</li>
+        <li>@Html.DisplayFor(modelItem => Item.Cost)</li>
+        <li>@Html.DisplayFor(modelItem => Item.Description)</li>
+        <li>@Html.DisplayFor(modelItem => Item.Quantity)</li>
+        <hr />
+    }
+</ul>
